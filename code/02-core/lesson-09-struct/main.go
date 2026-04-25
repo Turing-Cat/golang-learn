@@ -8,6 +8,13 @@ type Book struct {
 	Price  float64
 }
 
+func (b Book) PrintInfo() {
+	fmt.Printf("%s的作者是%s，价格是%.2f\n", b.Title, b.Author, b.Price)
+}
+
+func (b *Book) Discount(pct float64) {
+	b.Price = b.Price * pct
+}
 func main() {
 	b1 := Book{
 		Title:  "《Go语言实战》",
@@ -15,5 +22,7 @@ func main() {
 		Price:  99.89,
 	}
 
-	fmt.Printf("%s的作者是%s，价格是%.2f", b1.Title, b1.Author, b1.Price)
+	b1.PrintInfo()
+	b1.Discount(0.9)
+	b1.PrintInfo()
 }
