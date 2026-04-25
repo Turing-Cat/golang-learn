@@ -2,24 +2,20 @@ package main
 
 import "fmt"
 
-func avgScore(scores map[string]int) (float64, int) {
-	sum := 0
-	count := 0
-	for _, v := range scores {
-		if v >= 60 {
-			count++
-		}
-		sum += v
+func WordCount(text []string) map[string]int {
+	count := make(map[string]int)
+	for _, word := range text {
+		count[word]++
 	}
-	return float64(sum) / float64(len(scores)), count
+	return count
 }
 
 func main() {
-	stu_scores := map[string]int{
-		"张三": 98,
-	}
-	stu_scores["李四"] = 80
-	stu_scores["王五"] = 58
-	avgScore, count := avgScore(stu_scores)
-	fmt.Printf("平均成绩:%.2f,及格人数:%d", avgScore, count)
+	words := []string{"apple", "banana", "apple", "cherry", "banana", "apple"}
+	result := WordCount(words)
+	fmt.Println(result)
+
+	var empty []string
+	result = WordCount(empty)
+	fmt.Println(result)
 }
